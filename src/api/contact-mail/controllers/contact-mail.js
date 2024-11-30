@@ -6,7 +6,7 @@
 
 module.exports = {
   sendMail: async (ctx) => {
-    const { replyTo, subject, text, html } = ctx.request.body;
+    const { email, replyTo, subject, text, html } = ctx.request.body;
     const { files } = ctx.request.files;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,13 +25,31 @@ module.exports = {
       )}`
     );
 
+    const footerText = `
+      \n\n---\n
+      Este mensaje fue enviado por un usuario de la plataforma Rastro Animal. 
+      Si deseas más información o ponerte en contacto directamente con la persona que lo envió, 
+      puedes escribirle al siguiente correo: ${replyTo}
+      \n
+      Nota: Por favor responde directamente al remitente para continuar la comunicación.
+    `;
+
+    const footerHtml = `
+      <br><br>---<br>
+      <p><strong>Este mensaje fue enviado por un usuario de la plataforma Rastro Animal.</strong></p>
+      <p>Si deseas más información o ponerte en contacto directamente con la persona que lo envió, 
+      puedes escribirle al siguiente correo:</p>
+      <p style="font-weight: bold; color: #007bff;">${replyTo}</p>
+      <p>Nota: Por favor responde directamente al remitente para continuar la comunicación.</p>
+    `;
+
     try {
       const emailOptions = {
-        to: process.env.EMAIL_FROM,
+        to: email,
         replyTo,
         subject,
-        text: `${text}`,
-        html: `${html}`,
+        text: `${text}${footerText}`,
+        html: `${html}${footerHtml}`,
       };
 
       if (files) {

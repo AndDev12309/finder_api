@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "founds",
+  "info": {
+    "singularName": "found",
+    "pluralName": "founds",
+    "displayName": "Found"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "species": {
+      "type": "string"
+    },
+    "breed": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "found_location": {
+      "type": "string"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "Found",
+        "Rescued"
+      ],
+      "default": "Found"
+    },
+    "date_found": {
+      "type": "date"
+    },
+    "photos": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "founds"
+    }
+  }
+}

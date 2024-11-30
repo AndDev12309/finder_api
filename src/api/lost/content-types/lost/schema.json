@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "losts",
+  "info": {
+    "singularName": "lost",
+    "pluralName": "losts",
+    "displayName": "Lost"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "species": {
+      "type": "string"
+    },
+    "breed": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "color": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "last_seen_location": {
+      "type": "string"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "Lost",
+        "Rescued"
+      ],
+      "default": "Lost"
+    },
+    "date_reported": {
+      "type": "date"
+    },
+    "photos": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "losts"
+    }
+  }
+}

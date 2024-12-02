@@ -10,7 +10,7 @@ module.exports = ({ env }) => ({
   },
   sessions: {
     cookie: {
-      secure: true,
+      secure: env.bool("NODE_ENV", "production") === "production",
       httpOnly: true,
       sameSite: "strict",
     },

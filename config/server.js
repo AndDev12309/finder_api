@@ -8,11 +8,11 @@ module.exports = ({ env }) => ({
   webhooks: {
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
   },
-  sessions: {
-    cookie: {
-      secure: env.bool("NODE_ENV", "production") === "production",
-      httpOnly: true,
-      sameSite: "strict",
-    },
-  },
+  // sessions: {
+  //   cookie: {
+  //     secure: env.bool("NODE_ENV", "production") === "production",
+  //     httpOnly: true,
+  //     sameSite: "strict",
+  //   },
+  // },
 });
